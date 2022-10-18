@@ -25,7 +25,7 @@ const patientSchema = {
 const Prescription = mongoose.model("Prescription", prescriptionSchema);
 const Patient = mongoose.model("Patient", patientSchema);
 
-app.post("/patients", (req, res)=>{
+app.post("/api/patients", (req, res)=>{
   Patient.countDocuments({}, (err, count)=>{
     if(!err){
       const newPatient = new Patient({
@@ -41,7 +41,7 @@ app.post("/patients", (req, res)=>{
   })
 })
 
-app.post("/prescriptions", (req, res)=>{
+app.post("/api/prescriptions", (req, res)=>{
   Prescription.countDocuments({}, (err, count)=>{
     if(!err){
       const newPrescription = new Prescription({
@@ -58,7 +58,7 @@ app.post("/prescriptions", (req, res)=>{
   })
 })
 
-app.get("/patients/:patientId", (req, res) => {
+app.get("/api/patients/:patientId", (req, res) => {
   Patient.find({
     patientId: String(req.params.patientId)
   }, (err, docs) => {
@@ -79,7 +79,7 @@ app.get("/patients/:patientId", (req, res) => {
 if(process.env.NODE_ENV === "production"){
   app.use(express.static("client/build"));
   app.get("*", (req, res)=>{
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.join(__dirname, "client/build/index.html"));
   });
 }
 
