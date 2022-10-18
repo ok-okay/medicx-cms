@@ -1,5 +1,5 @@
 export function getPatientDetails(patientId, setPatientInfo) {
-  fetch("/patients/" + patientId)
+  fetch("/api/patients/" + patientId)
     .then((response) => response.text())
     .then((result) => {
       console.log(JSON.parse(result));

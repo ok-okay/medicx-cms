@@ -11,14 +11,14 @@ export function addPatient(patientInfo, prescription) {
     headers: myHeaders,
     body: raw,
   };
-  fetch("/patients", requestOptions)
+  fetch("/api/patients", requestOptions)
     .then((addPatientResponse) => addPatientResponse.text())
     .then((patientId) => {
       requestOptions.body = JSON.stringify({
         prescription: prescription,
         patientId: patientId,
       });
-      fetch("/prescriptions", requestOptions)
+      fetch("/api/prescriptions", requestOptions)
         .then((addPrescriptionResponse) => addPrescriptionResponse.text())
         .then((prescriptionId) => console.log(prescriptionId));
     })

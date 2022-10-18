@@ -13,7 +13,7 @@ export function addPrescription(patientId, prescription) {
     body: raw,
   };
   
-  fetch("/prescriptions", requestOptions)
+  fetch("/api/prescriptions", requestOptions)
     .then((addPrescriptionResponse) => addPrescriptionResponse.text())
     .then((prescriptionId) => console.log(prescriptionId));
 }
