@@ -7,9 +7,11 @@ export async function handlePrescription(formData) {
   const patientInfo = extractPatientInfo(formData);
   const prescription = extractPrescriptionData(formData);
 
-  if (formData.patientId.value === "") {
-    addPatient(patientInfo, prescription);
-  } else {
-    addPrescription(formData.patientId.value, prescription);
+  if (patientInfo.patientName !== "") {
+    if (formData.patientId.value === "") {
+      addPatient(patientInfo, prescription);
+    } else {
+      addPrescription(formData.patientId.value, patientInfo, prescription);
+    }
   }
 }

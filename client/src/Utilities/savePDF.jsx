@@ -1,12 +1,12 @@
 import jsPDF from "jspdf";
-import { extractPatientInfo } from "./extractPatientInfo";
-import { extractPrescriptionData } from "./extractPrescriptionData";
 
-export function savePDF(formData) {
+export function savePDF(patientId, prescriptionId, patientInfo, prescription) {
   const doc = new jsPDF();
-  const patientInfo = extractPatientInfo(formData);
-  const prescription = extractPrescriptionData(formData);
-  let text, i=0;
+  let text, i=2;
+
+  doc.text("Patient Id: " + patientId, 10, 10);
+  doc.text("Prescription Id: " + prescriptionId, 10, 20);
+
   for (let key in patientInfo) {
     text = key + ": " + patientInfo[key];
     doc.text(text, 10, 10 + i * 10);

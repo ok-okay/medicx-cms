@@ -1,3 +1,5 @@
+import { savePDF } from "./savePDF";
+
 export function addPatient(patientInfo, prescription) {
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
@@ -20,7 +22,9 @@ export function addPatient(patientInfo, prescription) {
       });
       fetch("/api/prescriptions", requestOptions)
         .then((addPrescriptionResponse) => addPrescriptionResponse.text())
-        .then((prescriptionId) => console.log(prescriptionId));
+        .then((prescriptionId) => {
+          savePDF(patientId, prescriptionId, patientInfo, prescription);
+        });
     })
     .catch((error) => console.log("error", error));
 }

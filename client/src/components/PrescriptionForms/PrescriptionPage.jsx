@@ -4,7 +4,6 @@ import DoctorAnalysis from "./Diagnosis/DoctorAnalysis";
 import SoftButton from "components/SoftButton";
 import PatientID from "./PatientID";
 import { PatientInfoContext } from "./PatientInfo/PatientInfoContext";
-import { savePDF } from "Utilities/savePDF";
 import { handlePrescription } from "Utilities/handlePrescription";
 
 export default function PrescriptionPage() {
@@ -12,7 +11,6 @@ export default function PrescriptionPage() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    savePDF(event.target);
     handlePrescription(event.target);
   }
   return (
