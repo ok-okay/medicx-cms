@@ -18,8 +18,8 @@ export default function BasicInformation(props) {
             width="300px"
             label="Name:"
             name="patientName"
-            value={basicInfo.patientName}
-            basicInfo={basicInfo}
+            value={basicInfo.patientName===undefined?"":basicInfo.patientName}
+            type="patientInfo"
           />
         </th>
         <th>
@@ -27,8 +27,8 @@ export default function BasicInformation(props) {
             width="100px"
             label="Gender:"
             name="patientGender"
-            value={basicInfo.patientGender}
-            basicInfo={basicInfo}
+            value={basicInfo.patientGender===undefined?"":basicInfo.patientGender}
+            type="patientInfo"
           />
         </th>
         <th style={{ position: "relative", right: "90px" }}>
@@ -36,8 +36,8 @@ export default function BasicInformation(props) {
             width="70px"
             label="Age:"
             name="patientAge"
-            value={basicInfo.patientAge}
-            basicInfo={basicInfo}
+            value={basicInfo.patientAge===undefined?"":basicInfo.patientAge}
+            type="patientInfo"
           />
         </th>
       </tr>
@@ -47,8 +47,8 @@ export default function BasicInformation(props) {
             width="300px"
             label="Email Id:"
             name="patientEmail"
-            value={basicInfo.patientEmail}
-            basicInfo={basicInfo}
+            value={basicInfo.patientEmail===undefined?"":basicInfo.patientEmail}
+            type="patientInfo"
           />
         </th>
         <th style={{ position: "relative", top: "70px" }}>
@@ -56,8 +56,8 @@ export default function BasicInformation(props) {
             width="200px"
             label="Phone Number:"
             name="patientPhone"
-            value={basicInfo.patientPhone}
-            basicInfo={basicInfo}
+            value={basicInfo.patientPhone===undefined?"":basicInfo.patientPhone}
+            type="patientInfo"
           />
         </th>
       </tr>

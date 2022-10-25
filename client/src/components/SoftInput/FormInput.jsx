@@ -1,12 +1,17 @@
-import React from "react";
+import React, {useContext} from "react";
 import SoftInput from "components/SoftInput";
 import InputLabel from "@mui/material/InputLabel";
 import SoftBox from "components/SoftBox";
+import { PatientInfoContext } from "components/PrescriptionForms/PatientInfo/PatientInfoContext";
 
 export default function FormInput(props) {
+  const {patientInfo, setPatientInfo} = useContext(PatientInfoContext);
   function handleChange(event) {
     if ("setPatientId" in props) {
       props.setPatientId(event.target.value);
+    }
+    if(props.type==="patientInfo"){
+      setPatientInfo({...patientInfo, [event.target.name]: event.target.value});
     }
   }
 
@@ -42,7 +47,7 @@ export default function FormInput(props) {
         style={{ position: "relative", top: "3.5px" }}
         value={props.value}
         onChange={
-          props.setPatientId ? handleChange : null
+          (props.setPatientId || props.type==="patientInfo") ? handleChange : null
         }
       />
     </SoftBox>

@@ -18,8 +18,8 @@ export default function Vitals(props) {
             width="150px"
             label="Height (cm):"
             name="patientHeight"
-            value={vitals.patientHeight}
-            vitals={vitals}
+            value={vitals.patientHeight===undefined?"":vitals.patientHeight}
+            type="patientInfo"
           />
         </th>
         <th style={{ position: "relative", left: "15px" }}>
@@ -27,8 +27,8 @@ export default function Vitals(props) {
             width="150px"
             label="Weight:"
             name="patientWeight"
-            value={vitals.patientWeight}
-            vitals={vitals}
+            value={vitals.patientWeight===undefined?"":vitals.patientWeight}
+            type="patientInfo"
           />
         </th>
         <th style={{ position: "relative", left: "20px" }}>
@@ -48,8 +48,8 @@ export default function Vitals(props) {
           width="150px"
           label="Temperature (&deg;F):"
           name="patientTemp"
-          value={vitals.patientTemp}
-          vitals={vitals}
+          value={vitals.patientTemp===undefined?"":vitals.patientTemp}
+          type="patientInfo"
         />
       </th>
       <th style={{ position: "relative", left: "15px", top: "70px" }}>
@@ -57,8 +57,8 @@ export default function Vitals(props) {
           width="150px"
           label="Blood Pressure:"
           name="patientBP"
-          value={vitals.patientBP}
-          vitals={vitals}
+          value={vitals.patientBP===undefined?"":vitals.patientBP}
+          type="patientInfo"
         />
       </th>
       <th style={{ position: "relative", left: "20px", top: "70px" }}>
@@ -66,8 +66,8 @@ export default function Vitals(props) {
           width="150px"
           label="SPO2:"
           name="patientSPO2"
-          value={vitals.patientSPO2}
-          vitals={vitals}
+          value={vitals.patientSPO2===undefined?"":vitals.patientSPO2}
+          type="patientInfo"
         />
       </th>
     </table>
