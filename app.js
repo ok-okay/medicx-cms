@@ -40,22 +40,6 @@ app.post("/api/patients", (req, res) => {
   })
 })
 
-app.post("/api/prescriptions", (req, res) => {
-  Prescription.countDocuments({}, (err, count) => {
-    if (!err) {
-      const newPrescription = new Prescription({
-        patientId: req.body.patientId,
-        prescription: req.body.prescription,
-        prescriptionId: String(count + 1)
-      })
-      newPrescription.save();
-      res.send(String(count + 1));
-    } else {
-      console.log(err);
-    }
-  })
-})
-
 app.get("/api/patients/:patientId", (req, res) => {
   Patient.find({
     patientId: String(req.params.patientId)
@@ -79,12 +63,46 @@ app.put("/api/patients/:patientId", (req, res) => {
     patientId: req.params.patientId
   }, {
     patientDetails: req.body.patientDetails
-  }, (err, doc)=>{
-    if(!err){
+  }, (err, doc) => {
+    if (!err) {
       res.send(doc);
-    }
-    else{
+    } else {
       res.send(err);
+    }
+  })
+})
+
+app.post("/api/prescriptions", (req, res) => {
+  Prescription.countDocuments({}, (err, count) => {
+    if (!err) {
+      const newPrescription = new Prescription({
+        patientId: req.body.patientId,
+        prescription: req.body.prescription,
+        prescriptionId: String(count + 1)
+      })
+      newPrescription.save();
+      res.send(String(count + 1));
+    } else {
+      console.log(err);
+    }
+  })
+})
+
+app.get("/api/prescriptions/:prescriptionId", (req, res) => {
+  Prescription.find({
+    prescriptionId: req.params.prescriptionId
+  }, (err, docs) => {
+    if (!err) {
+      try {
+        res.send({
+          patientId: docs[0].patientId,
+          prescription: docs[0].prescription
+        });
+      } catch {
+        res.send({})
+      }
+    } else {
+      console.log(err);
     }
   })
 })

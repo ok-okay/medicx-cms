@@ -7,8 +7,8 @@ import { getPatientDetails } from "Utilities/getPatientDetails";
 export default function PatientID() {
   const [patientId, setPatientId] = useState("");
   const {setPatientInfo} = useContext(PatientInfoContext);
-  function handleClick() {
-    getPatientDetails(patientId, setPatientInfo);
+  async function handleClick() {
+    setPatientInfo(await getPatientDetails(patientId));
   }
   return (
     <>
@@ -20,6 +20,7 @@ export default function PatientID() {
         fontWeight="bold"
         value={patientId}
         setPatientId={setPatientId}
+        placeholder="Enter patient ID"
       />
       <SoftButton
         size="small"

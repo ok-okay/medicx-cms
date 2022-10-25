@@ -1,9 +1,10 @@
-export function getPatientDetails(patientId, setPatientInfo) {
-  fetch("/api/patients/" + patientId)
+export async function getPatientDetails(patientId) {
+  let patientInfo;
+  await fetch("/api/patients/" + patientId)
     .then((response) => response.text())
     .then((result) => {
-      console.log(JSON.parse(result));
-      setPatientInfo(JSON.parse(result));
+      patientInfo = JSON.parse(result);
     })
     .catch((error) => console.log("error", error));
+  return patientInfo;
 }

@@ -13,6 +13,9 @@ export default function FormInput(props) {
     if(props.type==="patientInfo"){
       setPatientInfo({...patientInfo, [event.target.name]: event.target.value});
     }
+    if("setPrescriptionId" in props){
+      props.setPrescriptionId(event.target.value);
+    }
   }
 
   return (
@@ -47,7 +50,7 @@ export default function FormInput(props) {
         style={{ position: "relative", top: "3.5px" }}
         value={props.value}
         onChange={
-          (props.setPatientId || props.type==="patientInfo") ? handleChange : null
+          (props.setPatientId || props.type==="patientInfo" || props.setPrescriptionId) ? handleChange : null
         }
       />
     </SoftBox>
