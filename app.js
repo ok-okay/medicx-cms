@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
-mongoose.connect("mongodb+srv://"+process.env.USER_NAME+":"+process.env.PASSWORD+"@cluster0.rmjxgjt.mongodb.net/medicxDb");
+mongoose.connect("mongodb+srv://" + process.env.USER_NAME + ":" + process.env.PASSWORD + "@cluster0.rmjxgjt.mongodb.net/medicxDb");
 const prescriptionSchema = {
   prescriptionId: String,
   patientId: String,
@@ -25,34 +25,32 @@ const patientSchema = {
 const Prescription = mongoose.model("Prescription", prescriptionSchema);
 const Patient = mongoose.model("Patient", patientSchema);
 
-app.post("/api/patients", (req, res)=>{
-  Patient.countDocuments({}, (err, count)=>{
-    if(!err){
+app.post("/api/patients", (req, res) => {
+  Patient.countDocuments({}, (err, count) => {
+    if (!err) {
       const newPatient = new Patient({
-        patientId: String(count+1),
+        patientId: String(count + 1),
         patientDetails: req.body.patientDetails
       })
       newPatient.save();
-      res.send(String(count+1));
-    }
-    else{
+      res.send(String(count + 1));
+    } else {
       console.log(err);
     }
   })
 })
 
-app.post("/api/prescriptions", (req, res)=>{
-  Prescription.countDocuments({}, (err, count)=>{
-    if(!err){
+app.post("/api/prescriptions", (req, res) => {
+  Prescription.countDocuments({}, (err, count) => {
+    if (!err) {
       const newPrescription = new Prescription({
         patientId: req.body.patientId,
         prescription: req.body.prescription,
-        prescriptionId: String(count+1)
+        prescriptionId: String(count + 1)
       })
       newPrescription.save();
-      res.send(String(count+1));
-    }
-    else{
+      res.send(String(count + 1));
+    } else {
       console.log(err);
     }
   })
@@ -66,8 +64,7 @@ app.get("/api/patients/:patientId", (req, res) => {
       try {
         console.log(docs[0].patientDetails);
         res.send(docs[0].patientDetails);
-      }
-      catch{
+      } catch {
         res.send({})
       }
     } else {
@@ -76,9 +73,25 @@ app.get("/api/patients/:patientId", (req, res) => {
   })
 });
 
-if(process.env.NODE_ENV === "production"){
+app.put("/api/patients/:patientId", (req, res) => {
+  console.log(req.body.patientDetails);
+  Patient.findOneAndUpdate({
+    patientId: req.params.patientId
+  }, {
+    patientDetails: req.body.patientDetails
+  }, (err, doc)=>{
+    if(!err){
+      res.send(doc);
+    }
+    else{
+      res.send(err);
+    }
+  })
+})
+
+if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
-  app.get("*", (req, res)=>{
+  app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "client/build/index.html"));
   });
 }

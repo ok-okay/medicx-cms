@@ -1,6 +1,5 @@
-import { savePDF } from "./savePDF";
-
-export function addPrescription(patientId, patientInfo, prescription) {
+export async function addPrescription(patientId, prescription) {
+  let myPrescriptionId = "";
   var myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
 
@@ -15,9 +14,9 @@ export function addPrescription(patientId, patientInfo, prescription) {
     body: raw,
   };
 
-  fetch("/api/prescriptions", requestOptions)
+  await fetch("/api/prescriptions", requestOptions)
     .then((addPrescriptionResponse) => addPrescriptionResponse.text())
-    .then((prescriptionId) => {
-      savePDF(patientId, prescriptionId, patientInfo, prescription);
-    });
+    .then((prescriptionId) => myPrescriptionId=prescriptionId);
+  
+  return myPrescriptionId;
 }
