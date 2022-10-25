@@ -9,9 +9,10 @@ import { handlePrescription } from "Utilities/handlePrescription";
 export default function PrescriptionPage() {
   const [patientInfo, setPatientInfo] = useState({});
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    handlePrescription(event.target);
+    await handlePrescription(event.target);
+    window.location.reload(false)
   }
   return (
     <form type="submit" onSubmit={handleSubmit}>

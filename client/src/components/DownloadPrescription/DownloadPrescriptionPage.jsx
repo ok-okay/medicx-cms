@@ -12,6 +12,7 @@ export default function DownloadPrescriptionPage() {
     const {patientId, prescription} = await getPrescriptionDetails(prescriptionId);
     const patientInfo = await getPatientDetails(patientId);
     savePDF(patientId, prescriptionId, patientInfo, prescription);
+    window.location.reload(false)
   }
 
   return (
