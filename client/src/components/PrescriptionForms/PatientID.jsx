@@ -6,9 +6,11 @@ import { getPatientDetails } from "Utilities/getPatientDetails";
 
 export default function PatientID() {
   const [patientId, setPatientId] = useState("");
-  const {setPatientInfo} = useContext(PatientInfoContext);
+  const { setPatientInfo } = useContext(PatientInfoContext);
   async function handleClick() {
-    setPatientInfo(await getPatientDetails(patientId));
+    if (patientId !== "") {
+      setPatientInfo(await getPatientDetails(patientId));
+    }
   }
   return (
     <>
