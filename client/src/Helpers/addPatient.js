@@ -13,9 +13,16 @@ export async function addPatient(patientInfo) {
     body: raw,
   };
   await fetch("/api/patients", requestOptions)
-    .then((addPatientResponse) => addPatientResponse.text())
-    .then((patientId) => myPatientId=patientId)
+    .then(async function (response) {
+      const res = await response.json();
+      if(response.status===200){
+        myPatientId = res.patientId;
+      }
+      else{
+        console.log(res.error);
+      }
+    })
     .catch((error) => console.log("error", error));
-  
+
   return myPatientId;
 }

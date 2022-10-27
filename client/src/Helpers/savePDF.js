@@ -1,7 +1,8 @@
 import jsPDF from "jspdf";
 
 export function savePDF(patientId, prescriptionId, patientInfo, prescription) {
-  if (patientId !== undefined) {
+  console.log(patientId, prescriptionId, patientInfo, prescription);
+  if (patientId !== "") {
     const doc = new jsPDF();
     let text, i = 2;
 

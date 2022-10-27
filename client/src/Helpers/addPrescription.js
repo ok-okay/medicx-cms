@@ -15,8 +15,15 @@ export async function addPrescription(patientId, prescription) {
   };
 
   await fetch("/api/prescriptions", requestOptions)
-    .then((addPrescriptionResponse) => addPrescriptionResponse.text())
-    .then((prescriptionId) => myPrescriptionId=prescriptionId);
-  
+    .then(async function (response) {
+      const res = await response.json();
+      if (response.status === 200) {
+        myPrescriptionId = res.prescriptionId;
+      } else {
+        console.log(res.error);
+      }
+    })
+    .catch((error) => console.log("error", error));
+
   return myPrescriptionId;
 }
