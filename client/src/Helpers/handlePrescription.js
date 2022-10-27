@@ -1,14 +1,17 @@
-import { addPatient } from "./addPatient";
-import { extractPatientInfo } from "./extractPatientInfo";
-import { extractPrescriptionData } from "./extractPrescriptionData";
-import { addPrescription } from "./addPrescription";
-import { savePDF } from "./savePDF";
-import { putPatientInfo } from "./putPatientInfo";
+import {
+  addPatient,
+  extractPatientInfo,
+  extractPrescriptionData,
+  addPrescription,
+  savePDF,
+  putPatientInfo
+} from "./index";
 
 export async function handlePrescription(formData) {
   const patientInfo = extractPatientInfo(formData);
   const prescription = extractPrescriptionData(formData);
-  let patientId="", prescriptionId="";
+  let patientId = "",
+    prescriptionId = "";
   if (patientInfo.patientName !== "") {
     if (formData.patientId.value === "") {
       patientId = await addPatient(patientInfo);

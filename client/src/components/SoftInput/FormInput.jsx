@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import SoftInput from "components/SoftInput";
 import InputLabel from "@mui/material/InputLabel";
 import SoftBox from "components/SoftBox";
-import { PatientInfoContext } from "components/PrescriptionForms/PatientInfo/PatientInfoContext";
+import { PatientInfoContext } from "context/PatientInfoContext";
 
 export default function FormInput(props) {
   const {patientInfo, setPatientInfo} = useContext(PatientInfoContext);

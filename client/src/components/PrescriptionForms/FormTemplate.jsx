@@ -1,11 +1,9 @@
 import React from "react";
 import SoftBox from "../SoftBox";
-import BasicInformation from "./PatientInfo/BasicInformation";
-import Vitals from "./PatientInfo/Vitals";
-import Symptoms from "./Diagnosis/Symptoms";
+import {BasicInformation, Vitals} from "./PatientInfo/index";
+import {Advice, Symptoms} from "./Diagnosis/index";
 import Medicines from "./Medicines/Medicines";
 import Tests from "./Tests/Tests";
-import Advice from "./Diagnosis/Advice";
 
 function FormTemplate(props) {
   function renderTemplate(props) {

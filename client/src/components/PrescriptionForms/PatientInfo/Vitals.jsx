@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import FormInput from "components/SoftInput/FormInput";
-import { PatientInfoContext } from "./PatientInfoContext";
+import { PatientInfoContext } from "../../../context/PatientInfoContext";
 
 export default function Vitals(props) {
   const { patientInfo } = useContext(PatientInfoContext);

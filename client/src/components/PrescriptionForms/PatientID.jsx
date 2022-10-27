@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
-import { PatientInfoContext } from "./PatientInfo/PatientInfoContext";
+import { PatientInfoContext } from "context/PatientInfoContext";
 import FormInput from "components/SoftInput/FormInput";
 import SoftButton from "components/SoftButton";
-import { getPatientDetails } from "Utilities/getPatientDetails";
+import { getPatientDetails } from "Helpers/index";
 
 export default function PatientID() {
   const [patientId, setPatientId] = useState("");

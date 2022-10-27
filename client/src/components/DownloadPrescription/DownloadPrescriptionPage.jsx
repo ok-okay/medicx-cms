@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { savePDF } from "Utilities/savePDF";
+import {savePDF, getPrescriptionDetails, getPatientDetails} from "Helpers/index";
 import FormInput from "components/SoftInput/FormInput";
 import SoftButton from "components/SoftButton";
-import { getPrescriptionDetails } from "Utilities/getPrescriptionDetails";
-import { getPatientDetails } from "Utilities/getPatientDetails";
 
 export default function DownloadPrescriptionPage() {
   const [prescriptionId, setPrescriptionId] = useState("");

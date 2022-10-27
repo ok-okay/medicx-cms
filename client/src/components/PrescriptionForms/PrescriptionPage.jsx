@@ -3,8 +3,8 @@ import PatientInfo from "./PatientInfo/PatientInfo";
 import DoctorAnalysis from "./Diagnosis/DoctorAnalysis";
 import SoftButton from "components/SoftButton";
 import PatientID from "./PatientID";
-import { PatientInfoContext } from "./PatientInfo/PatientInfoContext";
-import { handlePrescription } from "Utilities/handlePrescription";
+import { PatientInfoContext } from "context/PatientInfoContext";
+import { handlePrescription } from "Helpers/index";
 
 export default function PrescriptionPage() {
   const [patientInfo, setPatientInfo] = useState({});
