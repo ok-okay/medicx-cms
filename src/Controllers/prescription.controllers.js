@@ -1,4 +1,4 @@
-import Prescription from "../Models/prescription";
+const Prescription = require("../Models/prescription");
 
 const createPrescription = (req, res) => {
     const patientId = req.body.patientId;
