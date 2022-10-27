@@ -7,10 +7,12 @@ export default function DownloadPrescriptionPage() {
   const [prescriptionId, setPrescriptionId] = useState("");
 
   async function handleClick(){
-    const {patientId, prescription} = await getPrescriptionDetails(prescriptionId);
-    const patientInfo = await getPatientDetails(patientId);
-    savePDF(patientId, prescriptionId, patientInfo, prescription);
-    window.location.reload(false)
+    if(prescriptionId!==""){
+      const {patientId, prescription} = await getPrescriptionDetails(prescriptionId);
+      const patientInfo = await getPatientDetails(patientId);
+      savePDF(patientId, prescriptionId, patientInfo, prescription);
+      window.location.reload(false)
+    }
   }
 
   return (
