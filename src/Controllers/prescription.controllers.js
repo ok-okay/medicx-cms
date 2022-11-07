@@ -23,33 +23,26 @@ const createPrescription = (req, res) => {
     })
 };
 
-const getPrescription = (req, res) => {
+const getPrescription = async (req, res) => {
     const prescriptionId = req.params.prescriptionId;
-    Prescription.find({
+    const docs = await Prescription.find({
         prescriptionId: prescriptionId
-    }, (err, docs) => {
-        if (!err) {
-            try {
-                const patientId = docs[0].patientId;
-                const prescription = docs[0].prescription;
-                return res.status(200).json({
-                    message: "Prescription Found",
-                    patientId: patientId,
-                    prescription: prescription
-                });
-            } catch {
-                return res.status(404).json({
-                    message: "Prescription not found",
-                    patientId: "",
-                    prescription: {}
-                });
-            }
-        } else {
-            return res.status(500).json({
-                error: err,
-            });
-        }
-    })
+    }).exec();
+    try {
+        const patientId = docs[0].patientId;
+        const prescription = docs[0].prescription;
+        return res.status(200).json({
+            message: "Prescription Found",
+            patientId: patientId,
+            prescription: prescription
+        });
+    } catch {
+        return res.status(404).json({
+            message: "Prescription not found",
+            patientId: "",
+            prescription: {}
+        });
+    }
 };
 
 module.exports = {

@@ -21,29 +21,24 @@ const createPatient = (req, res) => {
     })
 };
 
-const getpatient = (req, res) => {
+const getpatient = async (req, res) => {
     const patientId = req.params.patientId;
-    Patient.find({
+    const docs = await Patient.find({
         patientId: patientId
-    }, (err, docs) => {
-        if (!err) {
-            try {
-                return res.status(200).json({
-                    message: "Patient found",
-                    patientDetails: docs[0].patientDetails
-                });
-            } catch {
-                return res.status(404).json({
-                    message: "Patient not found",
-                    patientDetails: {}
-                });
-            }
-        } else {
-            return res.status(500).json({
-                error: err,
-            });
-        }
-    })
+    }).exec()
+    
+    try {
+        return res.status(200).json({
+            message: "Patient found",
+            patientDetails: docs[0].patientDetails
+        });
+    } catch {
+        return res.status(404).json({
+            message: "Patient not found",
+            patientDetails: {}
+        });
+    }
+
 };
 
 const modifyPatient = (req, res) => {

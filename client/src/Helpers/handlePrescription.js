@@ -18,7 +18,7 @@ export async function handlePrescription(formData) {
       prescriptionId = await addPrescription(patientId, prescription);
     } else {
       patientId = formData.patientId.value;
-      putPatientInfo(patientId, patientInfo);
+      await putPatientInfo(patientId, patientInfo);
       prescriptionId = await addPrescription(patientId, prescription);
     }
     savePDF(patientId, prescriptionId, patientInfo, prescription);
